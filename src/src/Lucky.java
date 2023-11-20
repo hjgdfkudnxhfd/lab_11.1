@@ -11,15 +11,15 @@ public class Lucky {
         public void run() {
             int x;
             while (true) {
-                synchronized (lock) { // Используем блокировку
+                synchronized (lock) {
                     x = atomicX.getAndIncrement();
                     if (x >= 999999) {
-                        break; // Выходим из цикла, если достигнут предел
+                        break;
                     }
                 }
                 if ((x % 10) + (x / 10) % 10 + (x / 100) % 10 == (x / 1000)
                         % 10 + (x / 10000) % 10 + (x / 100000) % 10) {
-                    synchronized (lock) { // Используем блокировку
+                    synchronized (lock) {
                         System.out.println(x);
                         count.getAndIncrement();
                     }
